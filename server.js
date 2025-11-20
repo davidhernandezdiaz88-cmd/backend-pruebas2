@@ -54,6 +54,14 @@ app.use(express.json());
 app.use("/api", routes);
 
 /**
+ * Ruta catch-all para manejar rutas no encontradas.
+ * Responde con un error 404 para cualquier ruta no definida.
+ */
+app.use('*', (req, res) => {
+  res.status(404).json({ msg: 'Route not found' });
+});
+
+/**
  * Inicia el servidor en el puerto xxxx.
  * Muestra un mensaje en consola al iniciar correctamente.
  *
