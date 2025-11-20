@@ -56,8 +56,10 @@ app.use("/api", routes);
 /**
  * Ruta catch-all para manejar rutas no encontradas.
  * Responde con un error 404 para cualquier ruta no definida.
+ * Se usa un middleware sin ruta (sin patrón) para evitar errores con
+ * `path-to-regexp` al parsear el patrón '*'.
  */
-app.use('*', (req, res) => {
+app.use((req, res) => {
   res.status(404).json({ msg: 'Route not found' });
 });
 
